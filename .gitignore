@@ -1,0 +1,59 @@
+# Visual Studio
+.vscode/
+*.sln.docstates
+*.suo
+*.user
+*.userprefs
+*.sln.ide
+*.sln.cache
+*.sln
+
+# Rider
+.idea/
+*.sln.iml
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+[Ll]ogs/
+
+# Visual Studio Code
+.vscode/
+
+# Rider-specific caches
+.idea/
+.idea_modules/
+*.iml
+
+# DotNet specific
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+*.db
+*.pdb
+
+# User-specific files
+*.userprefs
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Rider caches
+.idea/
+.idea/.idea_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.log

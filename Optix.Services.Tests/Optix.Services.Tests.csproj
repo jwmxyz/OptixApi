@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Optix.Services.Tests</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+      <PackageReference Include="Moq" Version="4.20.72" />
+      <PackageReference Include="NUnit" Version="4.2.2" />
+      <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Http.Features">
+        <HintPath>..\..\..\..\..\..\usr\local\Cellar\dotnet\8.0.4\libexec\shared\Microsoft.AspNetCore.App\8.0.4\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Optix.ErrorManagement\Optix.ErrorManagement.csproj" />
+      <ProjectReference Include="..\Optix.Services\Optix.Services.csproj" />
+    </ItemGroup>
+
+</Project>
