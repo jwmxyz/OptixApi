@@ -73,7 +73,6 @@ curl "https://optix.jwm.xyz/Movies?title=Matrix&genre=Action&sortBy=releaseDate&
 
 ### Improvements/Enhancements
 - Add a useable UI (Sorry)
-- Improved CI/CD
 - Improved test cases and test coverage (unit/E2E/integration tests)
 - Improve (or even add) Logging integration
 - Improved Swagger documentation/examples inline with OAS
