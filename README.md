@@ -5,6 +5,18 @@ Tech test for Optix
 
 Loosley based on [Dagable.Api](https://github.com/dagable/Dagable.Api) 
 
+# Deployed
+
+This is currently self hosted here: https://optix.jwm.xyz/swagger/index.html
+
+```
+curl "https://optix.jwm.xyz/Movies?title=Inception"
+curl "https://optix.jwm.xyz/Movies?genre=Action"
+curl "https://optix.jwm.xyz/Movies?title=A&genre=Horror"
+curl "https://optix.jwm.xyz/Movies?genre=action&sortBy=voteaverage&orderBy=desc"
+curl "https://optix.jwm.xyz/Movies?title=Matrix&genre=Action&sortBy=releaseDate&orderBy=asc&limit=10&page=1"
+```
+
 ## Tech
 
 ### Tools
@@ -36,7 +48,7 @@ Loosley based on [Dagable.Api](https://github.com/dagable/Dagable.Api)
 - Interacts with database 
 - Used for changes within the database through code first EF
 
-#### Cdr.ErrorManagement
+#### Optix.ErrorManagement
 
 - Error/Exception handling 
 - This ideally would be a standardised organisation package install via `Nuget` 
