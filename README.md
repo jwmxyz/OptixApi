@@ -61,12 +61,10 @@ Loosley based on [Dagable.Api](https://github.com/dagable/Dagable.Api)
 
 ### Improvements/Enhancements
 - Add a useable UI (Sorry)
-- Proper CI/CD
-- Docker support
+- Improved CI/CD
 - Improved test cases and test coverage (unit/E2E/integration tests)
 - Improve (or even add) Logging integration
 - Improved Swagger documentation/examples inline with OAS
-
 
 I would probably look at implementing something like the below:
 
