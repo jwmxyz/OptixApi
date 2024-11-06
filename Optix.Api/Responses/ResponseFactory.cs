@@ -1,4 +1,3 @@
-using Optix.Api.Factory;
 using Optix.ErrorManagement.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Optix.Api.DTO;
@@ -7,12 +6,13 @@ namespace Optix.Api.Responses;
 
 public class ResponseFactory : IResponseFactory
 {
+    /// <inheritdoc cref="IResponseFactory.CreateResponse{T}(PagingResult{T})"/>
     public IActionResult CreateResponse<T>(PagingResult<T> results)
     {
         return new OkObjectResult(new OptixStandardResult(results));
     }
 
-    /// <see cref="IResponseFactory.CreateResponse{T}({T})"/>
+    /// <inheritdoc cref="IResponseFactory.CreateResponse{T}(T)"/>
     public IActionResult CreateResponse<T>(T exception) where T : Exception
     {
         return exception switch
@@ -26,7 +26,7 @@ public class ResponseFactory : IResponseFactory
                 new OptixStandardResult(null, true, exception.Message)
             ),
             _ => new ObjectResult(
-                new OptixStandardResult(null, true, exception.Message))
+                new OptixStandardResult(null, true, exception.Message)) //TODO probably better to mask this exception.
             {
                 StatusCode = StatusCodes.Status500InternalServerError
             }

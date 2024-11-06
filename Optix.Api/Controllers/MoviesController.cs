@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Optix.Api.DTO;
-using Optix.Api.Factory;
+using Optix.Api.Responses;
 using Optix.DataAccess.DbModels;
 using Optix.Services.Factories;
 using Optix.Services.Interfaces;
@@ -42,9 +42,18 @@ public class MoviesController : ControllerBase
             Page = page
         };
 
-        var movieSearchServicParameter = _movieSearchFactory.GetMovieSearchParameter(searchParams);
-        var movies = await _movieSearchServices.PagedSearch(searchParams, movieSearchServicParameter);
+        var movieSearchServiceParameter = _movieSearchFactory.GetMovieSearchParameter(searchParams);
 
-        return _responseFactory.CreateResponse(new PagingResult<Movie>(movies.Results, page, movies.TotalPages));
+        try
+        {
+            var movies = await _movieSearchServices.PagedSearch(searchParams, movieSearchServiceParameter);
+
+            return _responseFactory.CreateResponse(new PagingResult<Movie>(movies.Results, page, movies.TotalPages));
+        }
+        catch (Exception ex)
+        {
+            //todo log the request and error.
+            throw;
+        }
     }
 }

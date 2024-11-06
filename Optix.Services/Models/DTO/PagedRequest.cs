@@ -7,6 +7,5 @@ public class PagedRequest
     public int Page { get; set; }
     public string OrderBy { get; set; }
     public virtual List<string> ValidSortByOptions { get; } = [];
-    
     public int SkipAmount => (Page - 1) * Limit;
 }

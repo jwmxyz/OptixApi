@@ -17,11 +17,11 @@ public class Program
         app.MigrateDatabase();
 
         // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+        // if (app.Environment.IsDevelopment())
+        //{
+            app.UseSwagger(); 
+            app.UseSwaggerUI();//enable this for this tech test.
+        //}
 
         app.MapControllers();
 

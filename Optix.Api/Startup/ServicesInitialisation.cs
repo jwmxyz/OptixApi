@@ -1,5 +1,4 @@
 using System.Reflection;
-using Optix.Api.Factory;
 using Optix.Api.Filters;
 using Optix.Api.Responses;
 using Optix.DataAccess;

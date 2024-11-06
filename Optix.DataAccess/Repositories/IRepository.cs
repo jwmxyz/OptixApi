@@ -11,6 +11,11 @@ public interface IRepository<TEntity>
     /// <returns>A List of TEntity based on </returns>
     Task<(List<TEntity> Results, int TotalCount)> Get(Expression<Func<TEntity, bool>> predicate, int limit, int skip);
 
+    /// <summary>
+    /// Retrieves a sorted and paged list of TEntity matching the predicate
+    /// </summary>
+    /// <typeparam name="TKey">Type of sorting key</typeparam>
+    /// <returns>Tuple containing sorted TEntity and total count</returns>
     Task<(List<TEntity> Results, int TotalCount)> Get<TKey>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> orderBy,
         int limit, int skip, bool orderByDesc = false);
     

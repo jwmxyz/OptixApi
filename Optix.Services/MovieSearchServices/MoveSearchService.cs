@@ -18,10 +18,20 @@ public class MoveSearchService :  IMoveSearchService
         _moviesRepository = moviesRepository;
         _searchParamValidator = searchParamValidator;
     }
-    public async Task<(IEnumerable<Movie> Results, int TotalPages)> PagedSearch(MovieSearchParams searchOptions, Expression<Func<Movie, bool>> searchService)
+    
+    /// <summary>
+    /// Performs paginated search for movies with optional sorting and filtering
+    /// </summary>
+    /// <param name="searchOptions">Search parameters including pagination, sorting, and filtering options</param>
+    /// <param name="searchExpression">Expression defining the search criteria</param>
+    /// <returns>Tuple containing matching movies and total page count</returns>
+    /// <exception cref="InvalidSearchParametersException">Thrown when search parameters are invalid or page number exceeds total pages</exception>
+    /// <exception cref="MovieNotFoundException">Thrown when no movies match the search criteria</exception>
+    public async Task<(IEnumerable<Movie> Results, int TotalPages)> PagedSearch(MovieSearchParams searchOptions, Expression<Func<Movie, bool>> searchExpression)
     {
         if (!_searchParamValidator.Validate(searchOptions, out var validationErrors))
         {
+            //todo log
             throw new InvalidSearchParametersException(validationErrors);
         }
 
@@ -38,8 +48,8 @@ public class MoveSearchService :  IMoveSearchService
         };
 
         var result = sortBySelector != null 
-            ? await _moviesRepository.Get(searchService, sortBySelector, searchOptions.Limit, searchOptions.SkipAmount, orderByDesc)
-            : await _moviesRepository.Get(searchService, searchOptions.Limit, searchOptions.SkipAmount);
+            ? await _moviesRepository.Get(searchExpression, sortBySelector, searchOptions.Limit, searchOptions.SkipAmount, orderByDesc)
+            : await _moviesRepository.Get(searchExpression, searchOptions.Limit, searchOptions.SkipAmount);
         
         if (result.Results == null || result.TotalCount == 0)
         {

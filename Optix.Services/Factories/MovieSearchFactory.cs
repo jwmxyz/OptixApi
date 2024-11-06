@@ -7,11 +7,11 @@ namespace Optix.Services.Factories;
 
 public class MovieSearchFactory : IMovieSearchFactory
 {
-
     public MovieSearchFactory()
     {
     }
 
+    /// <inheritdoc cref="IMovieSearchFactory.GetMovieSearchParameter"/>
     public Expression<Func<Movie, bool>> GetMovieSearchParameter(MovieSearchParams searchParams)
     {
         if (!string.IsNullOrEmpty(searchParams.Title) && string.IsNullOrEmpty(searchParams.Genre))

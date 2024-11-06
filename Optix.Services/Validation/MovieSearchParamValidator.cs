@@ -7,15 +7,15 @@ public class MovieSearchParamValidator : IValidator<MovieSearchParams>
     public bool Validate(MovieSearchParams entity, out List<string> validationErrors)
     {
         validationErrors = [];
-        
-        if (string.IsNullOrEmpty(entity.Title))
+
+        if (string.IsNullOrEmpty(entity.Title) && string.IsNullOrEmpty(entity.Genre))
         {
-            validationErrors.Add("Movie title cannot be null or empty.");
+            validationErrors.Add("Movie title and genre cannot be empty. At least one must be supplied");
         }
-        
+
         if (!string.IsNullOrEmpty(entity.SortBy) && !entity.ValidSortByOptions.Contains(entity.SortBy, StringComparer.InvariantCultureIgnoreCase))
         {
-            validationErrors.Add($"Sortby can only contain {string.Join("," , entity.ValidSortByOptions)}");
+            validationErrors.Add($"SortBy can only contain {string.Join("," , entity.ValidSortByOptions)}");
         }
 
         if (!string.IsNullOrEmpty(entity.OrderBy) && !Constants.SearchConstants.OrderByConsts.Contains(entity.OrderBy, StringComparer.InvariantCultureIgnoreCase))

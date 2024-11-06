@@ -13,6 +13,10 @@ public class MovieRepository : IRepository<Movie>
         _dbContext = dbContext;
     }
 
+    /// <summary>
+    /// Retrieves a paged list of movies matching the predicate
+    /// </summary>
+    /// <returns>Tuple containing matching movies and total count</returns>
     public async Task<(List<Movie> Results, int TotalCount)> Get(Expression<Func<Movie, bool>> predicate, int limit,
         int skip)
     {
@@ -20,6 +24,11 @@ public class MovieRepository : IRepository<Movie>
         return await GetPagedResultsAsync(query, limit, skip);
     }
 
+    /// <summary>
+    /// Retrieves a sorted and paged list of movies matching the predicate
+    /// </summary>
+    /// <typeparam name="TKey">Type of sorting key</typeparam>
+    /// <returns>Tuple containing sorted movies and total count</returns>
     public async Task<(List<Movie> Results, int TotalCount)> Get<TKey>(
         Expression<Func<Movie, bool>> predicate,
         Expression<Func<Movie, TKey>> orderBy,
@@ -32,6 +41,10 @@ public class MovieRepository : IRepository<Movie>
         return await GetPagedResultsAsync(orderedQuery, limit, skip);
     }
 
+    /// <summary>
+    /// Applies pagination to a movie query and returns results with total count
+    /// </summary>
+    /// <returns>Tuple containing paged movies and total count</returns>
     private async Task<(List<Movie> Results, int TotalCount)> GetPagedResultsAsync(IQueryable<Movie> query, int limit,
         int skip)
     {

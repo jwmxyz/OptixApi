@@ -39,12 +39,13 @@ public class MovieSearchParamValidatorTests
     }
 
     [Test]
-    public void Validate_WithEmptyTitle_ReturnsFalse()
+    public void Validate_WithEmptyTitleAndGenre_ReturnsFalse()
     {
         // Arrange
         var searchParams = new MovieSearchParams
         {
             Title = "",
+            Genre = "",
             Limit = 10,
             Page = 1
         };
@@ -55,27 +56,7 @@ public class MovieSearchParamValidatorTests
         // Assert
         Assert.That(result, Is.False);
         Assert.That(_validationErrors, Has.Exactly(1).Items);
-        Assert.That(_validationErrors[0], Is.EqualTo("Movie title cannot be null or empty."));
-    }
-
-    [Test]
-    public void Validate_WithNullTitle_ReturnsFalse()
-    {
-        // Arrange
-        var searchParams = new MovieSearchParams
-        {
-            Title = null,
-            Limit = 10,
-            Page = 1
-        };
-
-        // Act
-        bool result = _validator.Validate(searchParams, out _validationErrors);
-
-        // Assert
-        Assert.That(result, Is.False);
-        Assert.That(_validationErrors, Has.Exactly(1).Items);
-        Assert.That(_validationErrors[0], Is.EqualTo("Movie title cannot be null or empty."));
+        Assert.That(_validationErrors[0], Is.EqualTo("Movie title and genre cannot be empty. At least one must be supplied"));
     }
 
     [Test]
@@ -96,7 +77,7 @@ public class MovieSearchParamValidatorTests
         // Assert
         Assert.That(result, Is.False);
         Assert.That(_validationErrors, Has.Exactly(1).Items);
-        Assert.That(_validationErrors[0], Does.StartWith("Sortby can only contain"));
+        Assert.That(_validationErrors[0], Does.StartWith("SortBy can only contain"));
     }
 
     [Test]
